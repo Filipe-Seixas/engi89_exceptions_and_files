@@ -33,14 +33,29 @@ class OpenFile:
     def open(self, name):
         try:
             file = open(name)
-            print("File found")  # Try block requires except or will throw error
+            print("Here is your order: ")  # Try block requires except or will throw error
             print(file.read())
 
         except FileNotFoundError as errmsg:  # Creating an alias for the error
             print(f"File not found. Panic! {errmsg}")
 
         finally:  # Finally will execute regardless of try and except results
+            return "----/----/----"
+
+    def write(self, name):
+        try:
+            file = open(name, "a")
+            order = input("What do you want to add to your order?  ")
+            write = file.write("\n" + order)
+            file = open(name)
+            print(file.read())
+
+        except FileNotFoundError as errmsg:
+            print(f"File not found. Panic! {errmsg}")
+
+        finally:
             return "Thanks for visiting. See you again!"
+
 ```
  - program.py
 ```python
@@ -50,7 +65,8 @@ from app.files_and_exception_handling import OpenFile
 # Get file name to open
 file_name = input("Please enter the file name:  ")
 # Create class object
-opn_file = OpenFile()
+mng_file = OpenFile()
 # Output open function of OpenFile class
-print(opn_file.open(file_name))
+print(mng_file.open(file_name))
+print(mng_file.write(file_name))
 ```
