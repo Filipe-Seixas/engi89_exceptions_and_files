@@ -24,3 +24,33 @@
 - `try` works as `if condition`
 - `except` works as `elif`
 - `finally` works as else, it will execute regardless of `try` and `except` conditions.
+
+### File Task Example
+ - files_and_exception_handling.py
+```python
+class OpenFile:
+
+    def open(self, name):
+        try:
+            file = open(name)
+            print("File found")  # Try block requires except or will throw error
+            print(file.read())
+
+        except FileNotFoundError as errmsg:  # Creating an alias for the error
+            print(f"File not found. Panic! {errmsg}")
+
+        finally:  # Finally will execute regardless of try and except results
+            return "Thanks for visiting. See you again!"
+```
+ - program.py
+```python
+# Import class from file
+from app.files_and_exception_handling import OpenFile
+
+# Get file name to open
+file_name = input("Please enter the file name:  ")
+# Create class object
+opn_file = OpenFile()
+# Output open function of OpenFile class
+print(opn_file.open(file_name))
+```

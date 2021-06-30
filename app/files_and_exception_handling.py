@@ -39,3 +39,8 @@ class OpenFile:
         finally:  # Finally will execute regardless of try and except results
             return "Thanks for visiting. See you again!"
 
+    def write(self, name):
+        file = open(name)
+        with open(file, "w") as f:
+            write = f.write()
+        f.closed
